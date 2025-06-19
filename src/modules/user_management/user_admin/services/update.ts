@@ -113,7 +113,7 @@ async function update(
 
         if (data.type === 'admin') {
             const inputs: InferCreationAttributes<typeof model> = {
-                branch_id: body.branch_id || data.branch_id,
+                branch_id: data.branch_id || 1,
                 name: body.name || data.name,
                 email: body.email || data.email,
                 role: 'admin',

@@ -93,7 +93,7 @@ async function store(
     }
 
     let inputs: InferCreationAttributes<typeof data> = {
-        branch_id: body.branch_id,
+        branch_id: 1,
         name: body.name,
         email: body.email,
         role: 'admin',
