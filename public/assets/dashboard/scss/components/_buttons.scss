@@ -1,0 +1,115 @@
+.btn {
+    border: 1px solid var(--brand_color2);
+    background: transparent;
+    color: var(--brand_white2);
+    padding: 6px 15px;
+    text-transform: uppercase;
+    font-size: 13px;
+    cursor: pointer;
+
+    &:hover {
+        border: 1px solid var(--brand_white);
+        color: var(--brand_white);
+    }
+}
+
+.btn_1 {
+    border: 1px solid rgba(15, 113, 170, 0.534);
+    color: var(--brand_white);
+
+    &:hover {
+        background-color: rgba(15, 113, 170, 0.534);
+    }
+}
+.account_filter_btn{
+    border: 1px solid rgb(227, 223, 223);
+    border-radius: 5px;
+}
+
+.dues_back_btn {
+    display: flex;
+    justify-content: space-between;
+
+    .back_btn {
+        border: 1px solid var(--brand_color2);
+        background: transparent;
+        color: var(--brand_white2);
+        // padding: 6px 15px;
+        text-transform: uppercase;
+        font-size: 13px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-bottom: 10px !important;
+
+        a {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 15px;
+        }
+
+        &:hover {
+            border: 1px solid rgba(15, 113, 170, 0.534);
+            background-color: rgba(15, 113, 170, 0.534);
+            color: var(--brand_white);
+        }
+    }
+}
+
+.download_td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download_btn {
+    border: 1px solid rgba(15, 113, 170, 0.534);
+    color: var(--brand_white);
+    width: 140px;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+        background-color: rgba(15, 113, 170, 0.534);
+    }
+}
+
+.d_btn {
+    border: 1px solid rgb(91, 132, 255);
+    background: transparent;
+    color: rgb(198, 197, 197);
+    padding: 6px 15px;
+    text-transform: uppercase;
+    font-size: 13px;
+    cursor: pointer;
+
+    &:hover {
+        border: 1px solid rgb(198, 197, 197);
+        color: rgb(198, 197, 197);
+    }
+}
+
+.btn_error {
+    background-color: #e74c3c;
+    /* Red background */
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+    /* Prevent click */
+}
+
+.d_btn_1 {
+    border: 1px solid rgba(15, 113, 170, 0.534);
+    color: rgb(198, 197, 197);
+
+    &:hover {
+        background-color: rgba(15, 113, 170, 0.534);
+        // background-color: rgba(243, 243, 243, 0.534);
+    }
+}
+
+.error_message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+}

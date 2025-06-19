@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <link rel="stylesheet" href="/assets/dashboard/fonts/google_icon/google_icons.css">
+    <link rel="stylesheet" href="/assets/dashboard/styles/login/login.css">
+    <script src="/assets/dashboard/js/plugins/axios.js"></script>
+    <script src="/assets/dashboard/js/plugins/sweetalert.js"></script>
+</head>
+
+<body>
+    <div class="main_body">
+        <div id="login">
+            <div class="school_title">
+                মাদরাসাতুন নূর আল আরাবিয়া
+            </div>
+            <div class="grid_container">
+                <!-- <a href="http://127.0.0.1:5003/super-admin" target="_blank" class="role_button">SUPER ADMIN</a> -->
+                <a href="http://127.0.0.1:5003/admin" target="_blank" class="role_button">ADMIN</a>
+                <a href="http://127.0.0.1:5003/admission-officer" target="_blank" class="role_button">ADMISSION OFFICER</a>
+                <a href="http://127.0.0.1:5003/student" target="_blank" class="role_button">STUDENT</a>
+                <!-- <a href="http://127.0.0.1:5003/parent" target="_blank" class="role_button">PARENTS</a> -->
+                <a href="http://127.0.0.1:5003/teacher" target="_blank" class="role_button">TEACHER</a>
+                <!-- <a href="http://127.0.0.1:5003/account" target="_blank" class="role_button">ACCOUNTANT</a>
+                <a href="http://127.0.0.1:5003/staff" target="_blank" class="role_button">STAFF</a> -->
+
+                <!-- <a href="https://sms.techparkit.info/super-admin" target="_blank" class="role_button">SUPER ADMIN</a>
+                <a href="https://sms.techparkit.info/admin" target="_blank" class="role_button">ADMIN</a>
+                <a href="https://sms.techparkit.info/admission-officer" target="_blank" class="role_button">ADMISSION OFFICER</a>
+                <a href="https://sms.techparkit.info/student" target="_blank" class="role_button">STUDENT</a>
+                <a href="https://sms.techparkit.info/parent" target="_blank" class="role_button">PARENTS</a>
+                <a href="https://sms.techparkit.info/teacher" target="_blank" class="role_button">TEACHER</a>
+                <a href="https://sms.techparkit.info/account" target="_blank" class="role_button">ACCOUNTANT</a>
+                <a href="https://sms.techparkit.info/staff" target="_blank" class="role_button">STAFF</a> -->
+
+                <!-- <a href="https://nurulhikmahapp.techparkit.info/super-admin" target="_blank" class="role_button">SUPER ADMIN</a>
+                <a href="https://nurulhikmahapp.techparkit.info/admin" target="_blank" class="role_button">ADMIN</a>
+                <a href="https://nurulhikmahapp.techparkit.info/admission-officer" target="_blank" class="role_button">ADMISSION OFFICER</a>
+                <a href="https://nurulhikmahapp.techparkit.info/student" target="_blank" class="role_button">STUDENT</a>
+                <a href="https://nurulhikmahapp.techparkit.info/parent" target="_blank" class="role_button">PARENTS</a>
+                <a href="https://nurulhikmahapp.techparkit.info/teacher" target="_blank" class="role_button">TEACHER</a>
+                <a href="https://nurulhikmahapp.techparkit.info/account" target="_blank" class="role_button">ACCOUNTANT</a>
+                <a href="https://nurulhikmahapp.techparkit.info/staff" target="_blank" class="role_button">STAFF</a> -->
+            </div>
+        </div>
+    </div>
+    <script>
+        axios.interceptors.request.use(
+            function (config) {
+                let form_errors = document.querySelectorAll('.form_error');
+                [...form_errors].forEach((e) => e.remove());
+                let has_errors = document.querySelectorAll('.form_group_error');
+                [...has_errors].forEach((e) => e.classList.remove('form_group_error'));
+
+                return config;
+            },
+            function (error) {
+                return Promise.reject(error);
+            },
+        );
+        axios.interceptors.response.use(
+            function (response) {
+                return response;
+            },
+            function (error) {
+                if (error.response.data.status === 422) {
+                    let errors = error.response.data.data;
+                    errors.forEach((error) => {
+                        let el = document.querySelector(`[name="${error.path}"]`);
+                        if (el) {
+                            (el.parentNode)?.parentNode.classList.add('form_group_error');
+                            (el.parentNode)?.parentNode.insertAdjacentHTML(
+                                'beforeend',
+                                `
+                        <div class="form_error">
+                            ${error.msg}
+                        </div>
+                        `,
+                            );
+                        }
+                    });
+
+                    window.toaster(
+                        `${error.response.status} - ${error.response.statusText}`,
+                    );
+
+                    console.log(error.response);
+                }
+                return Promise.reject(error);
+            },
+        );
+        const login = () => {
+            event.preventDefault();
+            axios.post("/api/v1/auth/account/login", new FormData(event.currentTarget))
+                .then(res => {
+                    return location.href = "/account";
+                })
+                .catch(err => {
+                    let { message, data } = err.response.data;
+                    window.toaster(message, "error");
+                    console.log(data);
+                })
+        }
+    </script>
+</body>
+
+</html>

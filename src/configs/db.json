@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "root",
+    "password": "W^W#.^nFFfeL",
+    "database": "nurulhik_backend",
+    "host": "103.213.38.117",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "1234",
+    "database": "institute_management_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": "1234",
+    "database": "institute_management_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
